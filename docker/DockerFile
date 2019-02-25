@@ -1,0 +1,67 @@
+FROM centos:latest
+MAINTAINER marko
+
+ARG TERRAFORM_ZIP=https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+ARG CONSUL_ZIP=https://releases.hashicorp.com/consul/1.4.0/consul_1.4.0_linux_amd64.zip
+
+EXPOSE 8500
+USER root
+
+RUN yum install -y epel-release \
+    yum -y update
+
+RUN yum install -y \
+        ansible \
+        python-pip \
+        git \
+        wget \
+        unzip \
+        net-tools
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# download Hashistack
+RUN wget $TERRAFORM_ZIP -P /tmp
+RUN wget $CONSUL_ZIP -P /tmp
+
+# Install Hashistack
+RUN unzip /tmp/terraform*.zip -d /usr/bin/
+RUN unzip /tmp/consul*.zip -d /usr/bin/
+RUN rm -f /tmp/terraform*.zip
+RUN rm -f /tmp/consul*.zip
+
+# Install AWS Cli
+RUN pip install awscli --upgrade
+
+# Install Node.js v11.x
+RUN curl -sL https://rpm.nodesource.com/setup_11.x | bash -
+RUN yum install -y nodejs gcc-c++ make
+
+# Install git2consul
+RUN npm install -g git2consul
+
+# Create folder for consul config
+RUN mkdir /usr/lib/consul
+
+# Create Consul log folder
+RUN mkdir /var/log/consul
+
+# Create folder for git2consul config json
+RUN mkdir /usr/lib/git2consul
+
+# copy files to container
+COPY copy_files/encrypt_consul.json /usr/lib/consul
+COPY copy_files/git2consul-config.json /usr/lib/git2consul
+COPY copy_files/start_consul.sh ./
+
+RUN mkdir -p /home/centos/.ssh
+COPY id_rsa /home/centos/.ssh
+RUN chmod 600 /home/centos/.ssh/id_rsa
+
+RUN chmod 700 *.sh
+
+VOLUME /local-git
+
+# start services at container start
+ENTRYPOINT ["/bin/bash", "/start_consul.sh"]
