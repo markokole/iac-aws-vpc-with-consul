@@ -1,5 +1,5 @@
 variable "path_in_consul" {
-  default   = "test/master/aws/test-instance"
+  default   = "test/master/aws"
 }
 
 
@@ -27,10 +27,10 @@ data "consul_keys" "app" {
 data "consul_keys" "aws" {
   key {
     name    = "vpc_id"
-    path    = "${data.consul_keys.app.var.path_to_generated_aws_properties}/vpc_id"
+    path    = "${local.path_to_generated_aws_properties}/vpc_id"
   }
   key {
     name    = "gateway_name"
-    path    = "${data.consul_keys.app.var.path_to_generated_aws_properties}/gateway_name"
+    path    = "${local.path_to_generated_aws_properties}/gateway_name"
   }
 }

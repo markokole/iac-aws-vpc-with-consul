@@ -1,5 +1,6 @@
 variable "path_in_consul" {
-  default   = "test/master/aws/test-instance"
+  #default   = "test/master/aws/test-instance"
+  default   = "test/master/aws"
 }
 variable "consul_server" {
   default   = "127.0.0.1"

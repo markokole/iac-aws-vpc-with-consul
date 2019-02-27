@@ -1,7 +1,7 @@
 locals {
   datacenter = "${local.datacenter}"
   region = "${data.consul_keys.app.var.region}"
-  path_to_generated_aws_properties = "${data.consul_keys.app.var.path_to_generated_aws_properties}"
+  path_to_generated_aws_properties = "${var.path_in_consul}/${data.consul_keys.app.var.path_to_generated_aws_properties}"
   default_security_group_id = "${data.consul_keys.aws.var.default_security_group_id}"
 
 }
@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "port_22_to_world" {
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = "${local.default_security_group_id}"
 }
-
+/*
 resource "aws_security_group_rule" "port_8080_to_world" {
   type        = "ingress"
   description = "Ambari to world"
@@ -39,3 +39,4 @@ resource "aws_security_group_rule" "port_6080_to_world" {
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = "${local.default_security_group_id}"
 }
+*/

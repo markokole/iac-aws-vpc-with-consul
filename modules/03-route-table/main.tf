@@ -6,7 +6,7 @@ locals {
   igw_id = "${data.consul_keys.aws.var.igw_id}"
 
   destination_cidr_block = "${data.consul_keys.app.var.route_table_cidr_block_all}"
-  path_to_generated_aws_properties = "${data.consul_keys.app.var.path_to_generated_aws_properties}"
+  path_to_generated_aws_properties = "${var.path_in_consul}/${data.consul_keys.app.var.path_to_generated_aws_properties}"
 }
 
 provider "aws" {

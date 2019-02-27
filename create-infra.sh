@@ -2,7 +2,7 @@
 
 COMMAND=apply
 #PWD=/home/centos/aws-consul-terraform/modules
-PWD=/local-git/modules
+PWD=./modules
 
 for i in {1..5}
 do
@@ -17,7 +17,7 @@ done
 cd ..
 
 #echo "Print out all key-values from consul:"
-#consul kv get -recurse
+consul kv get -recurse | grep aws/generated
 
 set TF_LOG=DEBUG
 set TF_LOG_PATH=/tmp/log

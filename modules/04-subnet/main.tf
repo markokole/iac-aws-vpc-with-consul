@@ -7,7 +7,7 @@ locals {
   map_public_ip_on_launch = "${data.consul_keys.app.var.map_public_ip_on_launch}"
   subnet_name = "${data.consul_keys.app.var.subnet_name}"
 
-  path_to_generated_aws_properties = "${data.consul_keys.app.var.path_to_generated_aws_properties}"
+  path_to_generated_aws_properties = "${var.path_in_consul}/${data.consul_keys.app.var.path_to_generated_aws_properties}"
 }
 
 provider "aws" {

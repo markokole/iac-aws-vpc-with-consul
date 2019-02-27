@@ -1,5 +1,5 @@
 variable "path_in_consul" {
-  default   = "test/master/aws/test-instance"
+  default   = "test/master/aws"
 }
 variable "consul_server" {
   default   = "127.0.0.1"
@@ -29,10 +29,12 @@ data "consul_keys" "app" {
 data "consul_keys" "aws" {
   key {
     name    = "igw_id"
-    path    = "${data.consul_keys.app.var.path_to_generated_aws_properties}/igw_id"
+    #path    = "${data.consul_keys.app.var.path_to_generated_aws_properties}/igw_id"
+    path    = "${local.path_to_generated_aws_properties}/igw_id"
   }
   key {
     name    = "main_route_table_id"
-    path    = "${data.consul_keys.app.var.path_to_generated_aws_properties}/main_route_table_id"
+    #path    = "${data.consul_keys.app.var.path_to_generated_aws_properties}/main_route_table_id"
+    path    = "${local.path_to_generated_aws_properties}/main_route_table_id"
   }
 }

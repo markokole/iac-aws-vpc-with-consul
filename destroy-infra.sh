@@ -29,5 +29,7 @@ cd ..
 #echo "Restart consul..."
 #sleep 5
 
+consul kv delete -recurse test/master/aws/generated
+
 #echo "Print out all key-values from consul:"
 #consul kv get -recurse
