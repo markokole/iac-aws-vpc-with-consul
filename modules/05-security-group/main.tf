@@ -6,7 +6,11 @@ locals {
 
 }
 
-resource "aws_security_group" "port_22_to_world" {
+provider "aws" {
+  region = "${local.region}"
+}
+
+resource "aws_security_group_rule" "port_22_to_world" {
   type        = "ingress"
   description = "SSH to world"
   from_port   = "22"

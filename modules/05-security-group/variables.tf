@@ -1,6 +1,9 @@
 variable "path_in_consul" {
   default   = "test/master/aws"
 }
+variable "path_in_consul_generated" {
+  default   = "test/master/aws/generated"
+}
 variable "consul_server" {
   default   = "127.0.0.1"
 }
@@ -26,11 +29,11 @@ data "consul_keys" "app" {
   }
   key {
     name    = "cidr_block"
-    path    = "${var.path_in_consul}/cidr_block"
+    path    = "${var.path_in_consul_generated}/cidr_block"
   }
   key {
     name    = "security_group_name"
-    path    = "${var.path_in_consul}/security_group_name"
+    path    = "${var.path_in_consul_generated}/security_group_name"
   }
 }
 

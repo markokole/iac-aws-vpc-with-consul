@@ -12,7 +12,7 @@ In the container, awscli, ansible, terraform and consul are installed, consul lo
 5. Create a file `id_rsa` and add the private key to connect to the EC2 instances in AWS. This file is copied to the container in DockerFile.
 6. File `copy_files/encrypt_consul.json` holds a 16-bytes, Base64 encoded key for encrypting traffic between consul servers and agents.
 7. Create image by running `docker build . --tag=aws-terraform-image`.
-8. Create container based on the image `docker run -itd --rm -p8501:8500 --name aws-terraform --hostname terraformer -v C:\marko\GitHub\aws-terraform-hdp:/local-git --env-file "env.list" --env-file "aws_cred.env" aws-terraform-image`.
+8. Create container based on the image `docker run -itd --rm -p8501:8500 --name aws-terraform --hostname terraformer -v C:\marko\GitHub\aws-with-terraform:/local-git --env-file "env.list" --env-file "aws_cred.env" aws-terraform-image`.
 Option `-v` maps the github repository on Windows drive to a folder in the container.
 Port `8501` is opened so that the Consul web UI can be reached from a web browser in Windows.
 9. Start container `docker exec -it aws-terraform bash`.
