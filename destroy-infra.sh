@@ -2,7 +2,7 @@
 
 COMMAND=destroy
 #PWD=/home/centos/aws-consul-terraform/modules
-PWD=/local-git/modules
+PWD=/local-git/iac-aws-vpc/modules
 
 #for i in {7..6}
 #do

@@ -1,7 +1,7 @@
 output "vpc_id" {
   value = "${aws_vpc.test_vpc.id}"
 }
-output "cidr_block" {
+output "cidr_blocks" {
   value = "${aws_vpc.test_vpc.cidr_block}"
 }
 output "main_route_table_id" {
