@@ -1,7 +1,7 @@
 # The repository creates infrastructure on AWS
 
 ## Work environment
-Inside folder *docker* is work environment used for development and testing. The solution is for Windows 10 and has not been tested on Linux. With minor adjustments it can surely work on Linux as well. The README.md in the folder explains how to create the image and enter the container.
+The work and test environment is a Docker container on Windows 10. The code that builds the image can be found in [this repository](https://github.com/markokole/docker-on-wins-hashistack).
 
 ## Prepare infrastructure
 Inside folder `modules` are  folders with names starting from `01` to `05`. These build the AWS infrastructure. Infrastructure can be build by manually provisioning every module or it can be done by running the shell script:
