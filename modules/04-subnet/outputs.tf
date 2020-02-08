@@ -3,7 +3,7 @@
 #}
 
 output "subnet_id" {
-  value = "${aws_subnet.test_subnet.id}"
+  value = aws_subnet.test_subnet.id
 }
 
 #output "cidr_block" {
